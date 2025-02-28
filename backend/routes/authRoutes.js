@@ -74,6 +74,11 @@ const authenticateToken = (req, res, next) => {
     }
 };
 
+
+router.get('/validate-token', authenticateToken, (req, res) => {
+    res.json({ valid: true, user: req.user });
+});
+
 router.get('/user-data', authenticateToken, async (req, res) => {
     try {
         const users = await User.find(); // Fetch user data

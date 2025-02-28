@@ -11,7 +11,7 @@ export default function App() {
     
     useEffect(() => {
         if (token) {
-            axios.get('/api/validate-token', {
+            axios.get('/api/auth/validate-token', {
                 headers: { Authorization: `Bearer ${token}` }
             }).catch(() => {
                 setToken(null);
