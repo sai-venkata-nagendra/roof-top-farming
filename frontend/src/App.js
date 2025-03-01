@@ -23,7 +23,7 @@ export default function App() {
     return (
         <Router>
             <div className="container mx-auto p-4">
-                <h1 className="text-2xl font-bold">Rooftop Farming App</h1>
+               
                 <Routes>
                     <Route path="/login" element={<Login setToken={setToken} />} />
                     <Route path="/signup" element={<Signup setToken={setToken} />} />

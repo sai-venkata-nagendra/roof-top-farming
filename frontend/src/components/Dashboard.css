@@ -1,0 +1,18 @@
+.dashboard-container {
+    padding: 2rem;
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    min-height: 100vh;
+}
+
+.dashboard-container h2 {
+    color: #2e7d32;
+}
+
+.dashboard-container .grid div {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-container .grid div:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
