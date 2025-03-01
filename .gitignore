@@ -1,1 +1,10 @@
 .vercel
+
+# Ignore virtual environment
+venv/
+backend/venv/
+
+# Ignore large binary files
+*.dll
+*.pyd
+*.lib
