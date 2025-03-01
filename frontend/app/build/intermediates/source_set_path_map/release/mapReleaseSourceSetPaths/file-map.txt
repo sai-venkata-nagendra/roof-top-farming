@@ -1,0 +1,10 @@
+app.vercel.frontend_i25rkh6u6_harshiths_projects_2a9df694.twa.app-core-1.1.0-0 C:\Users\ASUS\.gradle\caches\8.8\transforms\2144911bb09dce3a07f407e3b390637e\transformed\core-1.1.0\res
+app.vercel.frontend_i25rkh6u6_harshiths_projects_2a9df694.twa.app-browser-1.4.0-1 C:\Users\ASUS\.gradle\caches\8.8\transforms\b511174c15fdde7dea3e957094b4390b\transformed\browser-1.4.0\res
+app.vercel.frontend_i25rkh6u6_harshiths_projects_2a9df694.twa.app-androidbrowserhelper-2.5.0-2 C:\Users\ASUS\.gradle\caches\8.8\transforms\d3335fbdff4200978ad121d7b141def7\transformed\androidbrowserhelper-2.5.0\res
+app.vercel.frontend_i25rkh6u6_harshiths_projects_2a9df694.twa.app-pngs-3 C:\Users\ASUS\Desktop\roof-top-farming\frontend\app\build\generated\res\pngs\release
+app.vercel.frontend_i25rkh6u6_harshiths_projects_2a9df694.twa.app-resValues-4 C:\Users\ASUS\Desktop\roof-top-farming\frontend\app\build\generated\res\resValues\release
+app.vercel.frontend_i25rkh6u6_harshiths_projects_2a9df694.twa.app-packageReleaseResources-5 C:\Users\ASUS\Desktop\roof-top-farming\frontend\app\build\intermediates\incremental\release\packageReleaseResources\merged.dir
+app.vercel.frontend_i25rkh6u6_harshiths_projects_2a9df694.twa.app-packageReleaseResources-6 C:\Users\ASUS\Desktop\roof-top-farming\frontend\app\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
+app.vercel.frontend_i25rkh6u6_harshiths_projects_2a9df694.twa.app-release-7 C:\Users\ASUS\Desktop\roof-top-farming\frontend\app\build\intermediates\merged_res\release\mergeReleaseResources
+app.vercel.frontend_i25rkh6u6_harshiths_projects_2a9df694.twa.app-main-8 C:\Users\ASUS\Desktop\roof-top-farming\frontend\app\src\main\res
+app.vercel.frontend_i25rkh6u6_harshiths_projects_2a9df694.twa.app-release-9 C:\Users\ASUS\Desktop\roof-top-farming\frontend\app\src\release\res

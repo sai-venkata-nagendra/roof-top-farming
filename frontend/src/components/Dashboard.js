@@ -1,52 +1,62 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
 export default function Dashboard() {
-    const [data, setData] = useState([]);
-    const [showModal, setShowModal] = useState(false);
     const [image, setImage] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const [parameters, setParameters] = useState({ size: '', type: '' });
-    const navigate = useNavigate();
+    const [data, setData] = useState([]); // Assuming this holds previous plans
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const token = localStorage.getItem('token');
-            try {
-                const response = await axios.get('/api/auth/user-data', {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
-                setData(response.data);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-
-        fetchData();
-    }, []);
+    const navigate = useNavigate();  
 
     const handleImageUpload = (event) => {
         setImage(event.target.files[0]);
     };
 
-    const handleSubmit = () => {
-        console.log('Image:', image);
-        console.log('Parameters:', parameters);
-        setShowModal(false);
+    const handleSubmit = async () => {
+        if (!image) {
+            alert('Please select an image.');
+            return;
+        }
+
+        setLoading(true);
+        const formData = new FormData();
+        formData.append('image', image);
+
+        try {
+            const response = await axios.post('/api/ai/upload-rooftop-image', formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            });
+
+            alert('AI Analysis Completed!');
+            navigate('/garden-planner'); // Navigate after AI processing
+
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            alert('Failed to analyze image.');
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
         <div className="dashboard-container">
             <h2 className="text-3xl font-bold mb-6 text-green-800">Dashboard</h2>
+
+            {/* Section: Previously Generated Plans */}
             <div className="flex justify-between items-center mb-6">
                 <h3 className="text-xl">Previously Generated Plans</h3>
                 <button 
                     onClick={() => setShowModal(true)}
-                    className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition duration-300 transform hover:scale-105">
+                    className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition duration-300 transform hover:scale-105"
+                >
                     Create New Plan
                 </button>
             </div>
+
             {data.length === 0 ? <p>No past generations found.</p> : (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {data.map((item, index) => (
@@ -59,6 +69,20 @@ export default function Dashboard() {
                 </div>
             )}
 
+            {/* Section: AI Image Upload */}
+            <div className="mt-6 p-4 border rounded shadow-lg">
+                <h3 className="text-lg font-semibold">Upload Rooftop Image for AI Analysis</h3>
+                <input type="file" onChange={handleImageUpload} className="mb-4 w-full p-2 border rounded-lg" />
+                <button 
+                    onClick={handleSubmit} 
+                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300"
+                    disabled={loading}
+                >
+                    {loading ? 'Processing...' : 'Submit'}
+                </button>
+            </div>
+
+            {/* Modal for Custom Parameters */}
             {showModal && (
                 <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
                     <div className="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-md">

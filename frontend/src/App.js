@@ -5,6 +5,7 @@ import Login from './components/Login.js';
 import Dashboard from './components/Dashboard.js';
 import Home from './components/Home.js';
 import Signup from './components/Signup.js';
+import GardenPlanner from './components/GardenPlanner.jsx';
 
 export default function App() {
     const [token, setToken] = useState(localStorage.getItem('token'));
@@ -29,6 +30,7 @@ export default function App() {
                     <Route path="/signup" element={<Signup setToken={setToken} />} />
                     <Route path="/dashboard" element={token ? <Dashboard /> : <Login setToken={setToken} />} />
                     <Route path="/" element={<Home />} />
+                    <Route path="/garden-planner" element={<GardenPlanner />} />
                 </Routes>
             </div>
         </Router>

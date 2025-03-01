@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "PROCESSED_RES",
+    "kind": "Directory"
+  },
+  "applicationId": "app.vercel.frontend_i25rkh6u6_harshiths_projects_2a9df694.twa",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 1,
+      "versionName": "1",
+      "outputFile": "resources-release.ap_"
+    }
+  ],
+  "elementType": "File"
+}
