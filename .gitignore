@@ -1,8 +1,6 @@
-.vercel
-
+.vercel/
+backend/node_modules/
 backend/venv/
-"backend/venv/" 
-
-.pyd
-.dll
-.lib
+*.pyd
+*.dll
+*.lib
