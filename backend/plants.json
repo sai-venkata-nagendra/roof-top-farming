@@ -1,0 +1,112 @@
+[
+  {
+    "name": "Tomato",
+    "category": "Vegetable",
+    "sunlight": "Full Sun",
+    "water": "Moderate",
+    "growth_time": "60-80 days",
+    "temperature": "18-25°C",
+    "soil_type": "Loamy",
+    "spacing": "45 cm apart",
+    "cost": 30
+  },
+  {
+    "name": "Basil",
+    "category": "Herb",
+    "sunlight": "Full Sun",
+    "water": "Moderate",
+    "growth_time": "50-75 days",
+    "temperature": "20-30°C",
+    "soil_type": "Well-drained",
+    "spacing": "20 cm apart",
+    "cost": 25
+  },
+  {
+    "name": "Lettuce",
+    "category": "Vegetable",
+    "sunlight": "Partial Sun",
+    "water": "Frequent",
+    "growth_time": "30-60 days",
+    "temperature": "10-20°C",
+    "soil_type": "Moist, well-drained",
+    "spacing": "25 cm apart",
+    "cost": 40
+  },
+  {
+    "name": "Carrot",
+    "category": "Vegetable",
+    "sunlight": "Full Sun",
+    "water": "Moderate",
+    "growth_time": "70-80 days",
+    "temperature": "15-25°C",
+    "soil_type": "Sandy, well-drained",
+    "spacing": "8 cm apart",
+    "cost": 20
+  },
+  {
+    "name": "Spinach",
+    "category": "Vegetable",
+    "sunlight": "Partial Sun",
+    "water": "Frequent",
+    "growth_time": "40-50 days",
+    "temperature": "5-20°C",
+    "soil_type": "Moist, well-drained",
+    "spacing": "30 cm apart",
+    "cost": 35
+  },
+  {
+    "name": "Cucumber",
+    "category": "Vegetable",
+    "sunlight": "Full Sun",
+    "water": "High",
+    "growth_time": "50-70 days",
+    "temperature": "20-30°C",
+    "soil_type": "Fertile, well-drained",
+    "spacing": "60 cm apart",
+    "cost": 50
+  },
+  {
+    "name": "Pepper",
+    "category": "Vegetable",
+    "sunlight": "Full Sun",
+    "water": "Moderate",
+    "growth_time": "60-90 days",
+    "temperature": "20-30°C",
+    "soil_type": "Loamy",
+    "spacing": "50 cm apart",
+    "cost": 45
+  },
+  {
+    "name": "Strawberry",
+    "category": "Fruit",
+    "sunlight": "Full Sun",
+    "water": "Moderate",
+    "growth_time": "90-120 days",
+    "temperature": "15-25°C",
+    "soil_type": "Sandy loam",
+    "spacing": "30 cm apart",
+    "cost": 60
+  },
+  {
+    "name": "Mint",
+    "category": "Herb",
+    "sunlight": "Partial Sun",
+    "water": "Frequent",
+    "growth_time": "30-60 days",
+    "temperature": "10-30°C",
+    "soil_type": "Moist, well-drained",
+    "spacing": "25 cm apart",
+    "cost": 20
+  },
+  {
+    "name": "Pumpkin",
+    "category": "Vegetable",
+    "sunlight": "Full Sun",
+    "water": "High",
+    "growth_time": "90-120 days",
+    "temperature": "18-30°C",
+    "soil_type": "Fertile, well-drained",
+    "spacing": "1 m apart",
+    "cost": 80
+  }
+]

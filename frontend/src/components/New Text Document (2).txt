@@ -1,0 +1,49 @@
+import { useEffect, useState } from "react";
+
+const PlantsList = ({ selectedPlants, setSelectedPlants }) => {
+  const [plants, setPlants] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/plants") // Replace with actual backend URL
+      .then((response) => response.json())
+      .then((data) => {
+        setPlants(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching plant data:", error);
+        setLoading(false);
+      });
+  }, []);
+
+  const handleCheckboxChange = (plantId) => {
+    if (selectedPlants.includes(plantId)) {
+      setSelectedPlants(selectedPlants.filter((id) => id !== plantId));
+    } else {
+      setSelectedPlants([...selectedPlants, plantId]);
+    }
+  };
+
+  if (loading) return <p>Loading plants...</p>;
+
+  return (
+    <div>
+      <h2>Select Plants</h2>
+      <ul>
+        {plants.map((plant) => (
+          <li key={plant.id}>
+            <input
+              type="checkbox"
+              checked={selectedPlants.includes(plant.id)}
+              onChange={() => handleCheckboxChange(plant.id)}
+            />
+            <strong> {plant.name} </strong> - Sunlight: {plant.sunlight}, Water: {plant.water}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default PlantsList;

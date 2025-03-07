@@ -1,70 +1,48 @@
-import React, { useState, useEffect } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 
-const GardenPlanner = () => {
-    const [zones, setZones] = useState({ sunlight_areas: [], obstacles: [], recommended_zones: [] });
+export default function GardenPlanner() {
+  const [unityLoaded, setUnityLoaded] = useState(false);
+  const [simulationStatus, setSimulationStatus] = useState("Waiting...");
 
-    useEffect(() => {
-    const fetchAnalysis = async () => {
-        try {
-            console.log("Fetching AI data...");
-            const response = await axios.get("/api/ai/get-latest-analysis");
-            console.log("AI Data Received:", response.data);
-            setZones(response.data || { sunlight_areas: [], obstacles: [], recommended_zones: [] });
-        } catch (error) {
-            console.error("Error fetching AI analysis:", error);
-        }
+  useEffect(() => {
+    const handleUnityMessage = (event) => {
+      if (typeof event.data === "string" && event.data.includes("Unity Loaded")) {
+        setUnityLoaded(true);
+      } else if (typeof event.data === "string") {
+        setSimulationStatus(event.data); // Receive messages from Unity
+      }
     };
 
-    fetchAnalysis(); // 🔹 Call function once
-}, []); // 🔹 Empty dependency array prevents infinite loop
+    window.addEventListener("message", handleUnityMessage);
+    return () => window.removeEventListener("message", handleUnityMessage);
+  }, []);
 
+  const addObstacle = () => {
+    window.UnityInstance?.SendMessage("GameManager", "AddObstacle", "3,2");
+  };
 
-    return (
-        <div style={{ width: "100vw", height: "100vh" }}>
-            <Canvas camera={{ position: [0, 5, 10], fov: 50 }}>
-                <ambientLight intensity={0.5} />
-                <directionalLight position={[5, 10, 5]} intensity={1} />
-                
-                {/* Rooftop Base */}
-                <mesh position={[0, 0, 0]}>
-                    <boxGeometry args={[12, 0.1, 12]} />
-                    <meshStandardMaterial color="gray" />
-                </mesh>
+  const addPlant = (plantType) => {
+    const x = Math.random() * 10; // Example position
+    const y = Math.random() * 10;
+    window.UnityInstance?.SendMessage("GameManager", "AddPlant", `${plantType},${x},${y}`);
+  };
 
-                {/* Sunlight Areas (Yellow) */}
-                {zones.sunlight_areas.length > 0 &&
-                    zones.sunlight_areas.map((pos, index) => (
-                        <mesh key={`sunlight-${index}`} position={pos}>
-                            <boxGeometry args={[1, 0.05, 1]} />
-                            <meshStandardMaterial color="yellow" transparent opacity={0.5} />
-                        </mesh>
-                    ))}
-
-                {/* Obstacles (Red) */}
-                {zones.obstacles.length > 0 &&
-                    zones.obstacles.map((pos, index) => (
-                        <mesh key={`obstacle-${index}`} position={pos}>
-                            <boxGeometry args={[1, 0.2, 1]} />
-                            <meshStandardMaterial color="red" />
-                        </mesh>
-                    ))}
-
-                {/* Recommended Planting Zones (Green) */}
-                {zones.recommended_zones.length > 0 &&
-                    zones.recommended_zones.map((pos, index) => (
-                        <mesh key={`recommended-${index}`} position={pos}>
-                            <boxGeometry args={[1, 0.1, 1]} />
-                            <meshStandardMaterial color="green" transparent opacity={0.7} />
-                        </mesh>
-                    ))}
-
-                <OrbitControls />
-            </Canvas>
-        </div>
-    );
-};
-
-export default GardenPlanner;
+  return (
+    <div className="unity-container">
+      <iframe
+        src="/Build/index.html"
+        title="Unity Rooftop Simulation"
+        width="100%"
+        height="600px"
+        frameBorder="0"
+      />
+      <div className="controls">
+        <button onClick={addObstacle} disabled={!unityLoaded}>Add Obstacle</button>
+        <button onClick={() => addPlant("Tomato")} disabled={!unityLoaded}>Add Tomato</button>
+        <button onClick={() => addPlant("Lettuce")} disabled={!unityLoaded}>Add Lettuce</button>
+        <button onClick={() => addPlant("Mint")} disabled={!unityLoaded}>Add Mint</button>
+        <p>Simulation Status: {simulationStatus}</p>
+      </div>
+    </div>
+  );
+}
